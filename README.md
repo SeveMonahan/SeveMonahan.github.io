@@ -13,3 +13,9 @@ sudo apt-get install subversion
 np install -g opspark
 
 os install
+
+----
+
+"os test" command is used for testing.
+
+"os submit" for submitting.
