@@ -10,7 +10,7 @@ export CHE_PROJECTS_ROOT=/workspace Should be in .bashrc
 
 sudo apt-get install subversion
 
-np install -g opspark
+npm install -g opspark
 
 os install
 
