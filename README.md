@@ -2,6 +2,7 @@
 
 Notes:
 
+YOU MUST EDIT THE BASHRC BEFORE INSTALLING ANY PROJECTS
 code ~/.bashrc
 
 (Note: This should be .bashrc
