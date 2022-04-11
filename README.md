@@ -2,12 +2,16 @@
 
 Notes:
 
-YOU MUST EDIT THE BASHRC BEFORE INSTALLING ANY PROJECTS
+Edit Bash RC so os install works correcly by:
+
 code ~/.bashrc
 
-(Note: This should be .bashrc
-export CHE_PROJECTS_ROOT=/workspace Should be in .bashrc
+(Note: This should be .bashrc Placing this line on line 4:
+"export CHE_PROJECTS_ROOT=/workspace"
+ Should be in .bashrc
 )
+
+Then, remember to restart the terminal, so that .bashrc is reloaded
 
 sudo apt-get install subversion
 
