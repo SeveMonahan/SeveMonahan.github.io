@@ -12,9 +12,9 @@
  */
 function printArrayValues(array) {
   // YOUR CODE BELOW HERE //
-  
-  
-  
+  for(var i = 0; i < array.length; i++){
+    console.log(array[i]);
+  }
   
   // YOUR CODE ABOVE HERE //
 }
