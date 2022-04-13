@@ -15,9 +15,7 @@
 function isArray(value) {
     // YOUR CODE BELOW HERE //
     
-    
-    
-    
+    return Array.isArray(value);
     // YOUR CODE ABOVE HERE //
 }
 
@@ -31,8 +29,8 @@ function isArray(value) {
  */
 function isObject(value) {
     // YOUR CODE BELOW HERE //
-    
-    
+
+    return true;
     
     
     // YOUR CODE ABOVE HERE //
@@ -47,7 +45,7 @@ function isObject(value) {
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    return isArray(value) || isObject(value);
     
     
     // YOUR CODE ABOVE HERE //
@@ -76,7 +74,7 @@ function typeOf(value) {
     // YOUR CODE BELOW HERE //
     
     
-    
+    return typeof(value);
     
     // YOUR CODE ABOVE HERE //
 }
