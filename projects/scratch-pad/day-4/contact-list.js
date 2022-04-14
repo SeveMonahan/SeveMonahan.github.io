@@ -47,7 +47,24 @@ function makeContactList() {
      */
     var contacts;
     
+    var findContact = function(fullName){
+        console.log(fullName);
+        for(var i = 0; i < contacts.length; i++){
+            var contact = contacts[i]
+            var contact_name = contact.nameFirst + " " + contact.nameLast;
+            
+            if(contact_name === fullName){
+                return contact;
+            }
+        }
+
+        return undefined;
+    }
     return {
+        addContact: function(contact) {
+            contacts.push(contact);
+        },
+        findContact: findContact,
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
