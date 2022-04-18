@@ -99,6 +99,25 @@ console.log(animals.length);
 // Step 7 - Making Friends ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// I have chosen an array for the list of friends.
+// This makes it relatively easy to programmatically access
+// each element.
+
+var friends = [];
+
+function getRandom(animals){
+  var max_number = animals.length;
+  var random_index = Math.floor(Math.random()*max_number);
+  return random_index;
+}
+
+friends.push(animals[getRandom(animals)].name);
+
+console.log(friends);
+
+animals[1]["friends"] = friends;
+
+console.log(animals);
 
 
 /**
