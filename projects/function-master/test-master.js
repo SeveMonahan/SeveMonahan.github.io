@@ -94,11 +94,11 @@ const { isUndefined } = require("lodash");
     }
 
     yay();
-    assert.equal(this.counter, undefined);
+    assert.equal(this.counter, 10);
     yay();
-    assert.equal(this.counter, undefined);
+    assert.equal(this.counter, 11);
     yay();
-    assert.equal(this.counter, undefined);
+    assert.equal(this.counter, 12);
   });
 
   QUnit.test("Inner scope can access outer scope", function(assert){
