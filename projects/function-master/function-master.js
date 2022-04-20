@@ -2,7 +2,7 @@
 // Function 1 - Object Values ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-const { result } = require("lodash");
+const { result, indexOf } = require("lodash");
 
 function objectValues(object) {
     var result = [];
@@ -108,7 +108,11 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
+    if(object.noises === undefined || (Array.isArray(object.noises)) && object.noises.length == 0){
+        return "there are no noises";
+    }else{
+        return object.noises.join(" ");
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -116,7 +120,13 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    var words = string.split(" ");
+    for(var i = 0; i < words.length; i++){
+        if(words[i] === word){
+            return true;
+        }
+    }
+    return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -124,6 +134,8 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
+    object.friends.push(name);
+    return object;
 
 }
 
@@ -132,7 +144,12 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
+    if(object.friends === undefined 
+       || object.friends.indexOf(name) === -1){
+        return false;
+    }
 
+    return true;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -140,7 +157,32 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
+    // The Array of friends name has. 
+    var friends_array;
 
+    // The Universe of people name can be friends with.
+    var possible_friends = [];
+
+    for(var i = 0; i < array.length; i++){
+        var person = array[i];
+        
+        if(person.name === name){
+            friends_array = person.friends;
+        }else{
+            possible_friends.push(person.name);
+        }
+    }
+
+    // The list of nonfriends
+    var result = [];
+
+    for(var i = 0; i < possible_friends.length; i++){
+        if(friends_array.indexOf(possible_friends[i]) === -1){
+            result.push(possible_friends[i]);
+        }
+    }
+
+    return result;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -148,7 +190,8 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+    object[key] = value;
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -156,7 +199,11 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+    for(var key in object){
+        if(array.indexOf(key) !== -1){
+            delete object[key];
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -164,6 +211,16 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
+    var unduplicated_array = [];
+
+    for(var i = 0; i < array.length; i++){
+        var item = array[i];
+        if(unduplicated_array.indexOf(item) === -1){
+            unduplicated_array.push(item);
+        }
+    }
+
+    return unduplicated_array;
 
 }
 
