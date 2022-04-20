@@ -1,3 +1,5 @@
+const { isUndefined } = require("lodash");
+
 (function(){
 
   QUnit.test( "Our First Test", function( assert ) {
@@ -34,7 +36,7 @@
   QUnit.test("A functions local scope is not available in an outer scope.", function(assert){
     function yay(){
       var kix = "kid tested mother approved";
-      assert.equal(kix, "kid tests mother approved");
+      assert.equal(kix, "kid tested mother approved");
     }
     yay();
     
@@ -61,8 +63,8 @@
       if(this.from_yay !== undefined){
         in_foo = this.from_yay;
       }
-      assert.equal(in_foo, "???");
-      assert.equal(this.from_yay, "???");
+      assert.equal(in_foo, "i'm in foo");
+      assert.equal(this.from_yay, undefined);
     }
     yay();
     foo();
@@ -75,11 +77,11 @@
     function yay(){
       var peanuts = "roasted";
 
-      assert.equal(peanuts, "???");
+      assert.equal(peanuts, "roasted");
     }
     yay();
 
-    assert.equal(peanuts, "???");
+    assert.equal(peanuts, 300);
   });
 
   QUnit.test("Variables created with var in a funtion are re-created each time", function(assert){
@@ -92,11 +94,11 @@
     }
 
     yay();
-    assert.equal(this.counter, "???");
+    assert.equal(this.counter, undefined);
     yay();
-    assert.equal(this.counter, "???");
+    assert.equal(this.counter, undefined);
     yay();
-    assert.equal(this.counter, "???");
+    assert.equal(this.counter, undefined);
   });
 
   QUnit.test("Inner scope can access outer scope", function(assert){
