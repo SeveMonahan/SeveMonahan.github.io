@@ -76,11 +76,10 @@ function makeContactList() {
     var printAllContactNames = function(){
         var all_contacts = "";
         for(var i = 0; i < contacts.length; i++){
-            var contact_name = getFullName(contact);
+            var contact_name = getFullName(contacts[i]);
             all_contacts += (contact_name + "\n");
         }
-        all_contacts.split(all_contacts.length - 1, 1);
-        return all_contacts;
+        return all_contacts.slice(0, all_contacts.length -1);
     }
 
     return {
@@ -93,7 +92,7 @@ function makeContactList() {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
-        }
+        },
     }
 }
 
