@@ -30,11 +30,8 @@ function isArray(value) {
 function isObject(value) {
     // YOUR CODE BELOW HERE //
 
-    for(var key in value){
-        return true;
-    }
-
-    return false;
+    return value != null
+           && value.constructor.name === "Object";
     
     // YOUR CODE ABOVE HERE //
 }
@@ -77,7 +74,11 @@ function typeOf(value) {
     // YOUR CODE BELOW HERE //
     if(isArray(value)){
         return "array";
+    }else if(value === null){
+        return "null";
     }
+
+    return(value.constructor.name.toLowerCase());
     
     return typeof(value);
     
