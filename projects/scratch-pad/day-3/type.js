@@ -30,8 +30,11 @@ function isArray(value) {
 function isObject(value) {
     // YOUR CODE BELOW HERE //
 
-    return true;
-    
+    for(var key in value){
+        return true;
+    }
+
+    return false;
     
     // YOUR CODE ABOVE HERE //
 }
@@ -72,7 +75,9 @@ function isCollection(value) {
  */ 
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
-    
+    if(isArray(value)){
+        return "array";
+    }
     
     return typeof(value);
     
