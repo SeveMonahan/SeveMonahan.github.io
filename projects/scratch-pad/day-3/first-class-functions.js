@@ -43,7 +43,11 @@ function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     
     return function (word) {
-        return (word[0] === startsWith);
+        if(word === ""){
+            return false;
+        }
+
+        return (word[0].toUpperCase() === startsWith.toUpperCase());
     };
     
     
@@ -58,9 +62,14 @@ function createStartsWithFilter(startsWith) {
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
     
-    return function(word) {
-        return (word[word.length -1] === endsWith);
-    }
+    return function (word) {
+        if(word === ""){
+            return false;
+        }
+
+        return (word[word.length - 1].toUpperCase() === endsWith.toUpperCase());
+    };
+    
     
     
     // YOUR CODE ABOVE HERE //
@@ -76,8 +85,13 @@ function createEndsWithFilter(endsWith) {
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
     
+    var result = [];
+
+    for(var i = 0; i < strings.length; i++){
+        result.push(modify(strings[i]));
+    }
     
-    
+    return result;
     
     // YOUR CODE ABOVE HERE //
 }
@@ -93,6 +107,14 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
+       
+    var result = true;
+
+    for(var i = 0; i < strings.length; i++){
+        result &&= test(strings[i]);
+    }
+    
+    return result;
     
     
     

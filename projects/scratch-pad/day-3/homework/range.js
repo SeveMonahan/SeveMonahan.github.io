@@ -24,8 +24,15 @@
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
     
+    var result = [];
+
+    for(var i = start; i != end; i += Math.sign((end-start))){
+        result.push(i);
+    }
     
+    result.push(end);
     
+    return result;
     
     // YOUR CODE GOES ABOVE HERE //
 }
