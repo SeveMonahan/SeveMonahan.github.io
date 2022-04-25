@@ -20,6 +20,7 @@ var _ = {};
 *   _.identity(5) === 5
 *   _.identity({a: "b"}) === {a: "b"}
 */
+_.identity = function(value){ return value; };
 
 
 /** _.typeOf
@@ -60,7 +61,17 @@ var _ = {};
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
+_.first = function(array, number){
+    if(!Array.isArray(array)){
+        return [];
+    }else if(isNaN(number)){
+        return array[0];
+    }else if(number < 0){
+        return [];
+    }
 
+    return array.slice(0, number);
+};
 
 /** _.last
 * Arguments:
@@ -79,7 +90,17 @@ var _ = {};
 *   _.last(["a", "b", "c"], 1) -> "c"
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
+_.last = function(array, number){
+    if(!Array.isArray(array)){
+        return [];
+    }else if(isNaN(number)){
+        return array[array.length - 1];
+    }else if(number < 0){
+        return [];
+    }
 
+    return array.slice(array.length - number - 1, number);
+};
 
 /** _.indexOf
 * Arguments:
@@ -96,7 +117,14 @@ var _ = {};
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
-
+_.indexOf = function(array, value){
+    for(var i = 0; i < array.length; i++){
+        if(array[i] === value){
+            return i;
+        }
+    }
+    return -1;
+}
 
 /** _.contains
 * Arguments:
