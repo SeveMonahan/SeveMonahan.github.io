@@ -140,6 +140,9 @@ _.indexOf = function(array, value){
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+_.contains = function(array, value){
+    return _.indexOf(array,value) == -1 ? false : true;
+}
 
 
 /** _.each
@@ -168,7 +171,17 @@ _.indexOf = function(array, value){
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
+_.unique = function(array){
+    var results = [];
 
+    for(var i = 0; i < array.length; i++){
+        var value = array[i];
+        if(_.indexOf(array, value) === i){
+            results.push(value);
+        }
+    }
+    return results;
+}
 
 /** _.filter
 * Arguments:
