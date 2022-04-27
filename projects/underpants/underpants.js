@@ -334,6 +334,20 @@ _.pluck = function(array, key){
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
+_.every = function(collection, f){
+    if(f === undefined){
+        f = _.identity;
+    }
+    var boolArray = _.map(collection,f);
+
+    for(var i = 0; i < boolArray.length; i++){
+        if(!boolArray[i]){
+            return false;
+        }
+    }
+
+    return true;
+}
 
 
 /** _.some
@@ -356,7 +370,20 @@ _.pluck = function(array, key){
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+_.some = function(collection, f){
+    if(f === undefined){
+        f = _.identity;
+    }
+    var boolArray = _.map(collection,f);
 
+    for(var i = 0; i < boolArray.length; i++){
+        if(boolArray[i]){
+            return true;
+        }
+    }
+
+    return false;
+}
 
 /** _.reduce
 * Arguments:
