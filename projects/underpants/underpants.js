@@ -218,7 +218,7 @@ _.filter = function(array, f){
 
     for(var i = 0; i < array.length; i++){
         var value = array[i];
-        if(f(value)){
+        if(true === f(value, i, array)){
             results.push(value);
         }
     }
@@ -239,6 +239,10 @@ _.filter = function(array, f){
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+_.reject = function(array, f){
+    var g = (value, i, array) => !f(value, i, array);
+    return _.filter(array, g);
+}
 
 
 /** _.partition
@@ -259,7 +263,9 @@ _.filter = function(array, f){
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
+_.partition = function(array, f){
+    return [_.filter(array,f), _.reject(array,f)];
+}
 
 /** _.map
 * Arguments:
@@ -276,14 +282,21 @@ _.filter = function(array, f){
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
-_.map = function(array, f){
+_.map = function(collection, f){
     var result = [];
-    for(var i = 0; i < array.length; i++){
-      result.push(f(array[i]));
+    if(Array.isArray(collection)){
+        for(var i = 0; i < collection.length; i++){
+          result.push(f(collection[i], i, collection));
+        }
+      
+    }else{
+        for(var key in collection){
+            result.push(f(collection[key], key, collection));
+          }
     }
-  
+
     return result;
-  }
+}
   
 
 /** _.pluck
@@ -296,7 +309,10 @@ _.map = function(array, f){
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
-
+_.pluck = function(array, key){
+    var f = (object) => object[key]
+    return _.map(array, f);
+}
 
 /** _.every
 * Arguments:
