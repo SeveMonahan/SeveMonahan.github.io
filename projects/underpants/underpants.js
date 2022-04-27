@@ -99,7 +99,11 @@ _.last = function(array, number){
         return [];
     }
 
-    return array.slice(array.length - number - 1, number);
+    if(array.length < number){
+        number = array.length;
+    }
+
+    return array.slice(array.length - number, array.length);
 };
 
 /** _.indexOf
@@ -161,6 +165,17 @@ _.contains = function(array, value){
 *      -> should log "a" "b" "c" to the console
 */
 
+_.each = function(collection, f){
+    if(Array.isArray(collection)){
+        for(var i = 0; i < collection.length; i++){
+            f(collection[i], i, collection);
+        }
+    }else{
+        for(var key in collection){
+            f(collection[key], key, collection);
+        }
+    }
+}
 
 /** _.unique
 * Arguments:
@@ -198,6 +213,18 @@ _.unique = function(array){
 * Extra Credit:
 *   use _.each in your implementation
 */
+_.filter = function(array, f){
+    var results = [];
+
+    for(var i = 0; i < array.length; i++){
+        var value = array[i];
+        if(f(value)){
+            results.push(value);
+        }
+    }
+
+    return results;
+}
 
 
 /** _.reject
@@ -249,7 +276,15 @@ _.unique = function(array){
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
-
+_.map = function(array, f){
+    var result = [];
+    for(var i = 0; i < array.length; i++){
+      result.push(f(array[i]));
+    }
+  
+    return result;
+  }
+  
 
 /** _.pluck
 * Arguments:
@@ -326,6 +361,20 @@ _.unique = function(array){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(array, f, seed){
+    var i = 0;
+
+    if(seed === undefined){
+        seed = array[0];
+        i++;
+    }
+
+    for(; i < array.length; i++){
+        seed = f(seed, array[i], i);
+    }
+
+    return seed;
+}
 
 /** _.extend
 * Arguments:
