@@ -43,20 +43,88 @@ var oldestCustomer = function(array){
         return accumulator;
     }
 
-    var customer = reduce(array, findOldest);
+    var customer = _.reduce(array, findOldest);
 
     return customer.name;
 };
 
-var youngestCustomer;
+var youngestCustomer = function(array){
+    var findYoungest = function(accumulator, current){
+        if(current.age < accumulator.age){
+            accumulator = current;
+        }
 
-var averageBalance;
+        return accumulator;
+    }
 
-var firstLetterCount;
+    var customer = _.reduce(array, findYoungest);
 
-var friendFirstLetterCount;
+    return customer.name;
+};
 
-var friendsCount;
+
+var averageBalance = function(array){
+    var startCondition = {
+        totalBalance: 0,
+        totalCustomers: 0
+    }
+
+    var findTotalBalancePlusCustomerNumber = function(accumulator, current){
+        accumulator.totalCustomers++;
+        var customerBalanceString = current.balance.slice(1);
+        customerBalanceString = customerBalanceString.replace(',', '');
+        accumulator.totalBalance += parseFloat(customerBalanceString);
+
+        return accumulator;
+    }
+
+    var balanceCondition = _.reduce(array, findTotalBalancePlusCustomerNumber, startCondition);
+
+    return (balanceCondition.totalBalance/balanceCondition.totalCustomers);
+};
+
+var firstLetterCount = function(array, letter){
+
+    var startsWithLetter = (object) => object.name[0].toUpperCase() === letter.toUpperCase();
+    return (_.filter(array, startsWithLetter)).length;
+};
+
+var friendFirstLetterCount = function(array, customer, letter){
+    var customerObject = _.reduce(array, (a,o) => o.name === customer ? o : a);
+
+    return firstLetterCount(customerObject.friends, letter);
+};
+
+var friendsCount = function(array, name){
+
+    var nameMatchesSoughtName = function(friendObject){
+        console.log(friendObject);
+        var result = friendObject.name === name;
+        console.log (result);
+        return result;
+    }
+
+    var friendsObjectContainsName = function(o){
+        var filteredList = _.filter(o.friends, nameMatchesSoughtName);
+        return filteredList.length > 0;
+    };
+
+    var accumulate = function(a, o){
+        if (friendsObjectContainsName(o)){
+            a.push(o);
+        }
+
+        return a;
+    }
+
+    var friendsObjects = _.reduce(array, accumulate, []);
+
+    console.log(friendsObjects);
+
+    return friendsObjects;
+}
+
+friendsCount(customers, "Justice Lara");
 
 var topThreeTags;
 
