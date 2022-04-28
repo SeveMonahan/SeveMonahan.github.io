@@ -434,6 +434,18 @@ _.reduce = function(array, f, seed){
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
+_.extend = function(){
+    var object = {};
+    for(var i = 0; i < arguments.length; i++){
+        var currentObject = arguments[i];
+        for(var key in currentObject){
+            object[key] = currentObject[key];
+        }
+    }
+
+    return object;
+}
+
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
