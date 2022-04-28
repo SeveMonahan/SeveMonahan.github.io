@@ -23,7 +23,7 @@ const { filter, reduce } = require('lodash');
  */
 
 var maleCount = function(array) {
-    return filter(array, (object) => object.gender === "male").length;
+    return _.filter(array, (object) => object.gender === "male").length;
 };
 
 var femaleCount = function(array){
@@ -31,11 +31,21 @@ var femaleCount = function(array){
         return object.gender === "female" ? ++number : number ;
     }
 
-    return reduce(array, counter, 0);
+    return _.reduce(array, counter, 0);
 }
 
 var oldestCustomer = function(array){
+    var findOldest = function(accumulator, current){
+        if(current.age > accumulator.age){
+            accumulator = current;
+        }
 
+        return accumulator;
+    }
+
+    var customer = reduce(array, findOldest);
+
+    return customer.name;
 };
 
 var youngestCustomer;
