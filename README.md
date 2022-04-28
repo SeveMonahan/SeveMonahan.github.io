@@ -24,3 +24,7 @@ os install
 "os test" command is used for testing.
 
 "os submit" for submitting.
+
+//// Testing let's get functional
+1) Get to "/workspace"
+2) Run command: npm start --prefix ./seve-monahan.github.io/projects/let-s-get-functional
