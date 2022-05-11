@@ -111,7 +111,7 @@ var friendsCount = function(array, name){
 
     var accumulate = function(a, o){
         if (friendsObjectContainsName(o)){
-            a.push(o);
+            a.push(o.name);
         }
 
         return a;
@@ -123,8 +123,6 @@ var friendsCount = function(array, name){
 
     return friendsObjects;
 }
-
-friendsCount(customers, "Justice Lara");
 
 var topThreeTags = function(array){
     function countTags(acc, object){
