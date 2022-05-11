@@ -98,9 +98,9 @@ var friendFirstLetterCount = function(array, customer, letter){
 var friendsCount = function(array, name){
 
     var nameMatchesSoughtName = function(friendObject){
-        console.log(friendObject);
+        //console.log(friendObject);
         var result = friendObject.name === name;
-        console.log (result);
+        //console.log (result);
         return result;
     }
 
@@ -119,7 +119,7 @@ var friendsCount = function(array, name){
 
     var friendsObjects = _.reduce(array, accumulate, []);
 
-    console.log(friendsObjects);
+    //console.log(friendsObjects);
 
     return friendsObjects;
 }
