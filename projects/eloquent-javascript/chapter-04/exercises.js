@@ -8,10 +8,10 @@ function range(start, end, step) {
   if(start === end){
     return [];
   }
-  
-  if(end > start){
-    for(var i = start; i += step; i < end){
-        results.push(i);
+
+  if(start < end && 0 < step){
+    for(var i = start; i <= end; i+=step){
+      results.push(i);
     }
     results.push(end);
     return results;
@@ -33,7 +33,8 @@ function sum(array) {
 
 function reverseArray(array) {
   var results = [];
-  for (var i = array.length - 1; i--; i >= 0){
+
+  for (var i = array.length - 1; i >= 0; i--){
     results.push(array[i]);
   }
 
@@ -45,7 +46,10 @@ function reverseArray(array) {
 ////////////////////////////////////////////////////////////////////////////////
 
 function reverseArrayInPlace(array) {
-  array = reverseArray(array);
+  var newArray = reverseArray(array);
+  for(var i = 0; i < array.length; i++){
+    array[i] = newArray[i];
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
