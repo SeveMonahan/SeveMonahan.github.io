@@ -65,6 +65,17 @@ var sumBelow = function(n) {
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
+  if(x > y){
+    return range(y, x).reverse();
+  }
+
+  if(x+1 === y || x === y){
+    return [];
+  }
+
+  var upperRange = range(x+1, y);
+  upperRange.unshift(x+1);
+  return upperRange;
 };
 
 // 7. Compute the exponent of a number.
@@ -73,6 +84,14 @@ var range = function(x, y) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  if(exp < 0){
+    return 1 / exponent(base, -exp);
+  }
+  if(exp === 0){
+    return 1;
+  }
+
+  return base * exponent(base, exp -1)
 };
 
 // 8. Determine if a number is a power of two.
@@ -80,14 +99,40 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if(n === 1){
+    return true;
+  }else if(n % 2 === 1 || n < 2){
+    return false
+  }
+
+  return powerOfTwo(n/2);
 };
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
+  if(string === ""){
+    return "";
+  }
+
+  var head = string[0];
+  var tail = string.slice(1);
+  return reverse(tail) + head;
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  string = string.toUpperCase();
+  string = string.replace(/ /g, "");
+
+  if(string === ""){
+    return true;
+  }
+
+  if(string[0] !== string[string.length -1]){
+    return false;
+  }
+
+  return palindrome(string.slice(1, string.length -1));
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -96,12 +141,28 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  if(y > x){
+    return x;
+  }
+
+  return modulo(x - y, y);
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
+  if(x < 0){
+    return 0 - multiply(-x, y);
+  }else if(y < 0){
+    return 0 - multiply(x, -y);
+  }
+
+  if(x === 1){
+    return y;
+  }
+
+  return y + multiply(x -1, y);
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
