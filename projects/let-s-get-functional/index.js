@@ -126,9 +126,53 @@ var friendsCount = function(array, name){
 
 friendsCount(customers, "Justice Lara");
 
-var topThreeTags;
+var topThreeTags = function(array){
+    function countTags(acc, object){
+        var tags = object.tags;
 
-var genderCount;
+        _.forEach(tags, (tag) => {
+                if (tag in acc){
+                     acc[tag]++;
+                }else{
+                      acc[tag] = 1;
+                }
+        });
+
+        return acc;
+    }
+    var tagNumbers = _.reduce(array, countTags, {});
+
+    var numsArray = [];
+    for(var key in tagNumbers){
+        numsArray.push(tagNumbers[key]);
+    }
+    numsArray = numsArray.sort().slice(0,3);
+    console.log(numsArray);
+
+    var results = [];
+    for(var key in tagNumbers){
+        if(numsArray.includes(tagNumbers[key])){
+            results.push(key);
+        }
+    }
+
+    return results.slice(0,3);
+};
+
+var genderCount = function(array){
+    function countGenders(acc, object){
+        var gender = object.gender;
+
+        if (gender in acc){
+            acc[gender]++;
+        }else{
+            acc[gender] = 1;
+        }
+
+        return acc;
+    }
+    return _.reduce(array, countGenders, {});
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
