@@ -42,7 +42,14 @@ _.identity = function(value){ return value; };
 * _.typeOf("javascript") -> "string"
 * _.typeOf([1,2,3]) -> "array"
 */
-
+_.typeOf = function (value){
+    if(Array.isArray(value)){
+        return "array";
+    }else if(value === null){
+        return "null"
+    }
+    return typeof value;
+}
 
 /** _.first
 * Arguments:
@@ -435,8 +442,8 @@ _.reduce = function(array, f, seed){
 */
 
 _.extend = function(){
-    var object = {};
-    for(var i = 0; i < arguments.length; i++){
+    var object = arguments[0];
+    for(var i = 1; i < arguments.length; i++){
         var currentObject = arguments[i];
         for(var key in currentObject){
             object[key] = currentObject[key];
