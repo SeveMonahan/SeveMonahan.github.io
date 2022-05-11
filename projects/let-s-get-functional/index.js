@@ -139,23 +139,25 @@ var topThreeTags = function(array){
         return acc;
     }
     var tagNumbers = _.reduce(array, countTags, {});
+    console.log(tagNumbers);
 
     var numsArray = [];
     for(var key in tagNumbers){
         numsArray.push(tagNumbers[key]);
     }
-    numsArray = numsArray.sort().slice(0,3);
-    console.log(numsArray);
+    var newNumsArray = (numsArray.sort().reverse()).slice(0,3);
+    console.log(newNumsArray);
 
     var results = [];
-    for(var key in tagNumbers){
-        if(numsArray.includes(tagNumbers[key])){
-            results.push(key);
-        }
+    for(var key2 in tagNumbers){
+            if(newNumsArray.includes(tagNumbers[key2])){
+                results.push(key2);
+            }
     }
 
-    return results.slice(0,3);
+    return results;
 };
+topThreeTags(customers);
 
 var genderCount = function(array){
     function countGenders(acc, object){
