@@ -41,11 +41,32 @@ function every(array, func) {
 // /////////////////////////////////////////////////////////////////////////////
 
 function dominantDirection(string) {
+
+  function isLeftScript(charCode){
+    for(var i = 0; i < SCRIPTS.length; i++){
+      var ranges = SCRIPTS[i].ranges;
+      for(var j = 0; j < ranges.length; j++){
+        if(ranges[j][0] <= charCode && charCode <= ranges[j][1]){
+          return SCRIPTS[i].direction === "ltr";
+        }
+      }
+    }
+  }
   var left = 0;
   var right = 0;
   for(var i = 0; i < string.length; i++){
-
+    if(isLeftScript(string.charCodeAt(i))){
+      left++;
+    }else{
+      right++;
+    }
   }
+
+  if(left > right){
+    return "ltr";
+  }
+
+  return "rtl";
 }
 
 // /////////////////////////////////////////////////////////////////////////////
