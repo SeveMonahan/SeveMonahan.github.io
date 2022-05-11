@@ -3,6 +3,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 function range(start, end, step) {
+  console.log(`start ${start} end ${end} step ${step}`);
+
+  if(step === undefined){
+    step = 1;
+  }
+
   var results = [];
 
   if(start === end){
@@ -13,7 +19,7 @@ function range(start, end, step) {
     for(var i = start; i <= end; i+=step){
       results.push(i);
     }
-    results.push(end);
+    
     return results;
   }
   return [];
