@@ -218,7 +218,9 @@ var createArray = function(str){
     return [];
   }
 
-  return (createArray(str.slice(1))).unshift(str[0]);
+  var result = createArray(str.slice(1));
+  result.unshift(str[0]);
+  return result;
 };
 
 // 17. Reverse the order of an array
@@ -227,24 +229,57 @@ var reverseArr = function (array) {
     return [];
   }
 
-  return (reverseArr(array.slice(1))).push(array[0]);
+  var result = reverseArr(array.slice(1))
+  
+  result.push(array[0]);
+
+  return result;
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  if(length === 0){
+    return [];
+  }
+
+  var result = buildList(value, length -1);
+
+  result.push(value);
+
+  return result;
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+  if(array.length == 0){
+    return 0;
+  }
+
+  var result = countOccurrence(array.slice(1), value);
+
+  if(array[0] === value){
+    return result + 1;
+  }
+
+  return result;
 };
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+  if(array.length === 0){
+    return [];
+  }
+
+  var result = rMap(array.slice(1), callback);
+
+  result.unshift(callback(array[0]));
+
+  return result;
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -280,17 +315,53 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  if(n < 0){
+    return null;
+  }else if(n === 0 || n === 1){
+    return n;
+  }
+
+  return nthFibo(n - 1) + nthFibo(n - 2);
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
-var capitalizeWords = function(input) {
+var capitalizeWords = function(array) {
+  if(array.length === 0){
+    return [];
+  }
+
+  var result = capitalizeWords(array.slice(1));
+
+  result.unshift(array[0].toUpperCase());
+
+  return result;
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
+
+  function capitalizeFirstLetter(string){
+    if(string === ""){
+      return "";
+    }
+
+    var firstLetter = (string[0]).toUpperCase();
+
+    return (firstLetter + string.slice(1));
+  }
+
+  if(array.length === 0){
+    return [];
+  }
+
+  var result = capitalizeFirst(array.slice(1));
+
+  result.unshift(capitalizeFirstLetter(array[0]));
+
+  return result;
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
@@ -312,7 +383,22 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(str, obj) {
+var letterTally = function(str, obj = {}) {
+  if(str.length == 0){
+    return obj;
+  }
+
+  var currentLetter = str[0];
+
+  var newStr = str.slice(1);
+
+  if(currentLetter in obj){
+    obj[currentLetter]++;
+  }else{
+    obj[currentLetter] = 1;
+  }
+
+  return letterTally(newStr, obj);
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
@@ -320,7 +406,27 @@ var letterTally = function(str, obj) {
 // elements should not be changed.
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
-var compress = function(list) {
+var compress = function(array) {
+  
+  if(array.length === 0){
+    return [];
+  }
+
+  var currentItem = array[0];
+  
+  for(var i = 0; i < array.length; i++){
+      if(currentItem === array[i]){
+        array = array.slice(1);
+      }else{
+        break;
+      }
+  }
+
+  array = compress(array.slice(1));
+
+  array.unshift(currentItem);
+
+  return array;
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
