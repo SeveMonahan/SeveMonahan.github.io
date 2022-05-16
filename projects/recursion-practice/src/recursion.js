@@ -412,21 +412,14 @@ var compress = function(array) {
     return [];
   }
 
-  var currentItem = array[0];
-  
-  for(var i = 0; i < array.length; i++){
-      if(currentItem === array[i]){
-        array = array.slice(1);
-      }else{
-        break;
-      }
+  var nextArray = compress(array.slice(1));
+  if(array[0] === nextArray[0]){
+    nextArray = nextArray.slice(1);
   }
 
-  array = compress(array.slice(1));
+  nextArray.unshift(array[0])
 
-  array.unshift(currentItem);
-
-  return array;
+  return nextArray;
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
@@ -439,19 +432,85 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
+  if(array.length === 0){
+    return [];
+  }
+
+  var nextArray = minimizeZeroes(array.slice(1));
+  if(array[0] === 0 && nextArray[0] === 0){
+    nextArray = nextArray.slice(1);
+  }
+
+  nextArray.unshift(array[0])
+
+  return nextArray;
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
+var alternateSign = function(array, positive = true) {
+  if (array.length == 0){
+    return [];
+  }
+  var sign = positive ? 1 : -1;
+  var newItem = sign * Math.abs(array[0]);
+
+  var result = alternateSign(array.slice(1), !positive);
+
+  result.unshift(newItem);
+
+  return result;
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+  if(str.length === 0){
+    return "";
+  }
+  var currentString = str[0];
+
+  switch(currentString){
+    case "0":
+      currentString = "zero";
+      break;
+    case "1":
+      currentString = "one";
+      break;
+    case "2":
+      currentString = "two";
+      break;
+    case "3":
+      currentString = "three";
+      break;
+    case "4":
+      currentString = "four";
+      break;
+    case "5":
+        currentString = "five";
+      break;
+    case "6":
+      currentString = "six";
+      break;
+    case "7":
+      currentString = "seven";
+      break;
+    case "8":
+      currentString = "eight";
+      break;
+    case "9":
+      currentString = "nine";
+      break;
+    default:
+      break;
+  }
+
+  result = currentString + numToText(str.slice(1));
+
+  return result;
 };
 
 // *** EXTRA CREDIT ***
