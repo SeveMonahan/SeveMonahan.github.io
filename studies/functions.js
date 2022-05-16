@@ -15,12 +15,18 @@
 
 console.log("Step 1 - Before Function");
 
+// This is the function definition. This defines what a function "does"
+// Nothing immediate happens when javascripts gets to a function defintion.
+// function definitions only have effects in the context of later functions calls.
 function detectCall(){
 	console.log("Function Call");
 }
 
 console.log("Step 2 - After Function Declaration");
 
+// This is a function call. The function is used here, and code in the function
+// definition is excuted. This allows for the function to have an actual effect
+// (in this case, printing a string to console.)
 detectCall(); // This is when the console prints "Function Call"
 
 console.log("Step 3- After Function Call");

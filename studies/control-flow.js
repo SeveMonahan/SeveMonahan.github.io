@@ -22,10 +22,8 @@ for(var i = 0; i < 10; i++){
 
 // 2. Else Statements //
 
-// Else Statements are an extension of if statements. They are
-// a section of code which if the expression used to control
-// the if statement is false.
-
+// Else Statements are an extension of if statements. Else statements will
+// run if all previous if statements are false.
 for(var i = 0; i < 10; i++){
 	if(Math.random() > 0.5){ // 50% chance of doing this.
 		console.log("True");
@@ -40,7 +38,9 @@ for(var i = 0; i < 10; i++){
 // Technically just putting an if statement *within* an else
 // statement, but useful enough to pull into their own
 // classification. This lets you pull out more than
-// two possibilites.
+// two possibilites. An else if statement will only run
+// if the previous "if" statements are false AND
+// the newly introduced "if" statement is true.
 
 for(var i = 0; i < 20; i++){
 	let randomItem = Math.random();
@@ -59,6 +59,30 @@ for(var i = 0; i < 20; i++){
 	}
 }
 
+// This is seperate from a string of if statements, because
+// in a string of if statements ALL true statements will run.
+
+for(var i = 0; i < 20; i++){
+	let randomItem = Math.random();
+	
+	// If any of the following statements are true,
+	// all following statments are true and all of
+	// them are executed.
+	if(randomItem > 0.8){
+		console.log("0.8 - 1.0");
+	}
+	if(randomItem > 0.6){
+		console.log("0.6 - 0.8");
+	}
+	if(randomItem > 0.4){
+		console.log("0.4 - 0.6");
+	}
+	if(randomItem > 0.2){
+		console.log("0.2 - 0.4");
+	}
+
+	console.log("###");
+}
 
 // 4. Switch Statements
 

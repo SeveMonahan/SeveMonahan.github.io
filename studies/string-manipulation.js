@@ -23,5 +23,10 @@ console.log(pangram.charAt(2)); // prints "e"
 console.log(pangram.slice(3)); // print " quick brown fox jumps over the lazy dog."
 console.log(pangram.slice(4,9)); // prints "quick"
 
+// 'toUpperCase' capitalizes all letters in a string.
+console.log(pangram.toUpperCase()); // print "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG."
+
+// 'toLowerCase' makes all letters in a string lowercase
+console.log(pangram.toLowerCase()); // print "the quick brown fox jumps over the lazy dog."
 // There are dozens of other string manipulation functions. If you have a task to do,
 // somebody somewhere has probably written a function which can do it.

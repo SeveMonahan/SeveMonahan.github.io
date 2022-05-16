@@ -44,6 +44,9 @@ console.log(2 * 3); // Prints 6
 // '/'
 console.log(6 / 2); // Prints 3
 
+// '%' (Remainder operator)
+consoel.log(7 % 2); // Prints 1
+
 
 // 3. Comparision Operators //
 

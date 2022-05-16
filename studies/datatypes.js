@@ -37,6 +37,13 @@ var imTrue = true;
 var todaysYourBirthday = false;
 var livesInUSA = true;
 
+// Boolean can be generated through "boolean expression" created through
+// comparision operators. This allows programmers to define booleans
+// whose value depends on facts about the program.
+
+var imAlsoTrue = (1 < 10);
+var imAlsoFalse = favoriteActor.length < 5;
+
 // 4. Array //
 
 // An Array is a group of variables smashed together, which can be individually

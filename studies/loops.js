@@ -16,6 +16,16 @@ for(var i = 0; i < 5; i++){ // Do this 5 times.
 	console.log(i);
 }
 
+// All for loops have three parts, an initalization, a "continue check",
+// and an incrementor.
+for(
+	var i = 0; // Initalization
+	i < 5;     // Continue Check
+	i++        // Increment
+	){
+		console.log(i);
+	}
+
 // This can be variable in some cases - you can use it to go through an
 // array
 
@@ -50,10 +60,11 @@ for(key in object){ // Go over every key in object
 
 // SECTION 2 - Backwards loops
 
-// For loops can go backwards. All loops have three parts, an
-// initalization, a "continue check", and a incrementor.
+// For loops can go backwards. This is done by changing the
+// Incrementor to go down and the continue check to break the loop
+// when the initalized variable goes too low.
 
-// See the following:
+// As a reminder of how a nomral for loop works:
 
 for(
 var i = 0; // Initalization
@@ -67,8 +78,8 @@ i++        // Increment
 // count backwards:
 
 for(
-var i = 0;
-i > -5;
+var i = 4;
+i >= 0;
 i--
 ){
 	console.log(i);
